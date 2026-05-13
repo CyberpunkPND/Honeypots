@@ -43,7 +43,7 @@ docker compose down -v
 
 | Сервис | URL / Порт | Логин / Пароль |
 |--------|------------|----------------|
-| **Grafana** | `http://localhost:3000` | `admin` / `admin` |
+| **Grafana** | `http://localhost:3000` | `admin` / `27462005Anton+` |
 | **Loki API** | `http://localhost:3100` | — |
 | **Cowrie SSH** | `ssh -p 2222 root@localhost` | Любой |
 | **Cowrie Telnet** | `telnet localhost 2223` | Любой |
