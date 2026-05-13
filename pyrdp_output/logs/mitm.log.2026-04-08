@@ -1,0 +1,4 @@
+[2026-04-08 10:58:13,510] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-04-08 10:58:13,580] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-04-08 10:58:13,581] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-04-08 10:58:13,591] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389

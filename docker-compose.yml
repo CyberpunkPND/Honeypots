@@ -1,0 +1,102 @@
+services:
+  cowrie:
+    image: cowrie/cowrie:latest
+    container_name: hp_cowrie
+    ports:
+      - '2222:2222'
+      - '2223:2223'
+    volumes:
+      - ./logs/cowrie:/cowrie/var/log/cowrie
+      - ./cowrie/cowrie.cfg:/cowrie/cowrie.cfg:ro
+    environment:
+      - COWRIE_LOG_LEVEL=INFO
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  dionaea:
+    image: dinotools/dionaea-docker:latest
+    container_name: hp_dionaea
+    ports:
+      - '21:21'
+      - '8081:80'
+      - '3306:3306'
+      - '69:69/udp'
+    volumes:
+      - ./dionaea/config/log_json.yaml:/opt/dionaea/etc/dionaea/ihandlers-enabled/log_json.yaml:ro
+      - ./dionaea/logs:/opt/dionaea/var/log/dionaea
+      - ./dionaea/data:/opt/dionaea/var/lib/dionaea
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  pyrdp:
+    image: gosecure/pyrdp:latest
+    command: sh -c "pyrdp-mitm --transparent -o /output 2>&1 | tee /var/log/pyrdp/pyrdp.log"
+    volumes:
+      - ./pyrdp_output:/output
+      - ./logs/pyrdp:/var/log/pyrdp
+    ports:
+      - "3389:3389"
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  postgresql-honeypot:
+    build: ./postgresql-honeypot
+    container_name: hp_postgres_0xnslabs
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./logs/postgresql-honeypot:/app/logs
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  vector:
+    image: timberio/vector:0.48.0-debian
+    container_name: hp_vector
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./vector.yaml:/etc/vector/vector.yaml:ro
+      - ./logs:/var/log/honeypots:ro
+    ports:
+      - "8686:8686"
+    command: ["--config", "/etc/vector/vector.yaml"]
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  loki:
+    image: grafana/loki:latest
+    container_name: hp_loki
+    ports:
+      - "3100:3100"
+    volumes:
+      - ./loki-data:/loki
+      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
+    command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+  grafana:
+    image: grafana/grafana:latest
+    container_name: hp_grafana
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_USER=admin
+      - GF_SECURITY_ADMIN_PASSWORD=admin
+    volumes:
+      - ./grafana-data:/var/lib/grafana
+    restart: unless-stopped
+    networks:
+      - hp_net
+
+networks:
+  hp_net:
+    driver: bridge
+

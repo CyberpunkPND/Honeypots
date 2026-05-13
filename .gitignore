@@ -1,0 +1,5 @@
+grafana-data/
+loki-data/
+dionaea/logs/
+*.sqlite
+.env

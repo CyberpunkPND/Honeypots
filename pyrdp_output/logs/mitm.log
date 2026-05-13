@@ -1,0 +1,52 @@
+[2026-05-12 14:59:53,996] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 14:59:53,996] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 14:59:53,996] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 14:59:54,024] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 15:04:58,106] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 15:04:58,107] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 15:04:58,107] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 15:04:58,107] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 15:12:37,671] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 15:12:37,671] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 15:12:37,671] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 15:12:37,672] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 15:18:59,715] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 15:18:59,715] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 15:18:59,715] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 15:18:59,716] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 15:20:49,040] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 15:20:49,040] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 15:20:49,041] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 15:20:49,042] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 17:37:39,219] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 17:37:39,219] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 17:37:39,219] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 17:37:39,220] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 17:38:27,315] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 17:38:27,315] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 17:38:27,315] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 17:38:27,316] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 17:53:39,070] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 17:53:39,070] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 17:53:39,070] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 17:53:39,070] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 17:54:29,773] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 17:54:29,773] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 17:54:29,773] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 17:54:29,773] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 18:05:56,101] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 18:05:56,102] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 18:05:56,102] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 18:05:56,102] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 18:24:50,583] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 18:24:50,599] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 18:24:50,599] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 18:24:50,601] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-12 18:29:55,151] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-12 18:29:55,187] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-12 18:29:55,187] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-12 18:29:55,188] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389
+[2026-05-13 08:13:09,639] - INFO - GLOBAL - pyrdp.mitm - Target: None:3389
+[2026-05-13 08:13:09,678] - INFO - GLOBAL - pyrdp.mitm - Output directory: /output
+[2026-05-13 08:13:09,678] - WARNING - GLOBAL - pyrdp.mitm.connections - Unable to set transparent socket. Are you running as root?
+[2026-05-13 08:13:09,680] - INFO - GLOBAL - pyrdp.mitm.connections - MITM Server listening on 0.0.0.0:3389

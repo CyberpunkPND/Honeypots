@@ -1,0 +1,6 @@
+- name: log_json
+  config:
+    flat_data: true
+    handlers:
+      - file:///dev/stdout
+      - file:///opt/dionaea/var/log/dionaea/dionaea.json
