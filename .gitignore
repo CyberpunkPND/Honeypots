@@ -14,3 +14,4 @@ loki-data/
 *.sqlite
 *.db
 .env
+pg-server/
