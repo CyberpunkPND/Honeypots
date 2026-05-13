@@ -3,3 +3,14 @@ loki-data/
 dionaea/logs/
 *.sqlite
 .env
+
+# === Runtime logs & outputs ===
+logs/
+pyrdp_output/
+dionaea/logs/
+dionaea/*.log
+grafana-data/
+loki-data/
+*.sqlite
+*.db
+.env
