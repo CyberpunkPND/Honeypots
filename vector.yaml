@@ -1,15 +1,18 @@
 sources:
   docker_logs:
     type: docker_logs
-    docker_host: unix:///var/run/docker.sock
+  dionaea_json:
+    type: file
+    include:
+      - /var/log/honeypots/dionaea/dionaea.json
+    read_from: beginning
 
 sinks:
   loki:
     type: loki
-    inputs: ["docker_logs"]
+    inputs: ["docker_logs", "dionaea_json"]
     endpoint: http://loki:3100
     encoding:
-      codec: json   # это про формат отправки в Loki, не про парсинг логов
+      codec: json
     labels:
       container_name: "{{ container_name }}"
-      job: docker

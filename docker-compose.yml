@@ -9,26 +9,27 @@ services:
       - ./logs/cowrie:/cowrie/var/log/cowrie
       - ./cowrie/cowrie.cfg:/cowrie/cowrie.cfg:ro
     environment:
+
       - COWRIE_LOG_LEVEL=INFO
     restart: unless-stopped
     networks:
       - hp_net
 
   dionaea:
-    image: dinotools/dionaea-docker:latest
+    image: dinotools/dionaea:latest
     container_name: hp_dionaea
+    restart: unless-stopped
     ports:
       - '21:21'
       - '8081:80'
       - '3306:3306'
       - '69:69/udp'
     volumes:
-      - ./dionaea/config/log_json.yaml:/opt/dionaea/etc/dionaea/ihandlers-enabled/log_json.yaml:ro
-      - ./dionaea/logs:/opt/dionaea/var/log/dionaea
-      - ./dionaea/data:/opt/dionaea/var/lib/dionaea
-    restart: unless-stopped
+      - ./logs/dionaea:/opt/dionaea/var/log/dionaea
     networks:
       - hp_net
+    cap_add:
+      - NET_ADMIN
 
   pyrdp:
     image: gosecure/pyrdp:latest
@@ -58,16 +59,18 @@ services:
   vector:
     image: timberio/vector:0.48.0-debian
     container_name: hp_vector
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./vector.yaml:/etc/vector/vector.yaml:ro
-      - ./logs:/var/log/honeypots:ro
-    ports:
-      - "8686:8686"
-    command: ["--config", "/etc/vector/vector.yaml"]
     restart: unless-stopped
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro  # ← Обязательно для docker_logs!
+      - ./vector.yaml:/etc/vector/vector.yaml:ro      # ← Наш новый конфиг
+      # ❌ Убираем монтирование ./logs — больше не нужно для docker_logs
+    ports:
+      - "8686:8686"  # Health endpoint
+    command: ["--config", "/etc/vector/vector.yaml"]
     networks:
       - hp_net
+    depends_on:
+      - loki  # Запускать после Loki
 
   loki:
     image: grafana/loki:latest
@@ -76,7 +79,7 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-data:/loki
-      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
+#      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
     command: -config.file=/etc/loki/local-config.yaml
     restart: unless-stopped
     networks:
