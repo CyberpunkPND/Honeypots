@@ -1,16 +1,33 @@
 sources:
   docker_logs:
     type: docker_logs
+
   dionaea_json:
     type: file
     include:
       - /var/log/honeypots/dionaea/dionaea.json
     read_from: beginning
 
+transforms:
+  dionaea_parsed:
+    type: remap
+    inputs: ["dionaea_json"]
+    source: |
+      # Парсим JSON с обработкой ошибки
+      parsed, err = parse_json(.message)
+      if err == null {
+        . = parsed
+      } else {
+        # Если не JSON, оставляем как есть, но всё равно добавим метку
+        . = {"raw": .message}
+      }
+      # Обязательная метка для Loki
+      .container_name = "hp_dionaea"
+
 sinks:
   loki:
     type: loki
-    inputs: ["docker_logs", "dionaea_json"]
+    inputs: ["docker_logs", "dionaea_parsed"]
     endpoint: http://loki:3100
     encoding:
       codec: json

@@ -9,7 +9,6 @@ services:
       - ./logs/cowrie:/cowrie/var/log/cowrie
       - ./cowrie/cowrie.cfg:/cowrie/cowrie.cfg:ro
     environment:
-
       - COWRIE_LOG_LEVEL=INFO
     restart: unless-stopped
     networks:
@@ -25,7 +24,9 @@ services:
       - '3306:3306'
       - '69:69/udp'
     volumes:
+      - ./data/dionaea:/opt/dionaea/var/lib/dionaea
       - ./logs/dionaea:/opt/dionaea/var/log/dionaea
+      - ./config/dionaea:/opt/dionaea/etc/dionaea:ro
     networks:
       - hp_net
     cap_add:
@@ -33,6 +34,8 @@ services:
 
   pyrdp:
     image: gosecure/pyrdp:latest
+    container_name: hp_pyrdp
+    # Оставляем tee, но Vector будет читать чистый лог из папки logs
     command: sh -c "pyrdp-mitm --transparent -o /output 2>&1 | tee /var/log/pyrdp/pyrdp.log"
     volumes:
       - ./pyrdp_output:/output
@@ -61,16 +64,17 @@ services:
     container_name: hp_vector
     restart: unless-stopped
     volumes:
-      - /var/run/docker.sock:/var/run/docker.sock:ro  # ← Обязательно для docker_logs!
-      - ./vector.yaml:/etc/vector/vector.yaml:ro      # ← Наш новый конфиг
-      # ❌ Убираем монтирование ./logs — больше не нужно для docker_logs
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./vector.yaml:/etc/vector/vector.yaml:ro
+      - ./logs:/var/log/honeypots:ro
     ports:
-      - "8686:8686"  # Health endpoint
+      - "8686:8686"
     command: ["--config", "/etc/vector/vector.yaml"]
     networks:
       - hp_net
     depends_on:
-      - loki  # Запускать после Loki
+      - loki
+      - postgresql-honeypot
 
   loki:
     image: grafana/loki:latest
@@ -79,7 +83,6 @@ services:
       - "3100:3100"
     volumes:
       - ./loki-data:/loki
-#      - ./loki-config.yaml:/etc/loki/local-config.yaml:ro
     command: -config.file=/etc/loki/local-config.yaml
     restart: unless-stopped
     networks:
@@ -102,4 +105,3 @@ services:
 networks:
   hp_net:
     driver: bridge
-
