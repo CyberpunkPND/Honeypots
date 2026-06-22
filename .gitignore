@@ -15,3 +15,4 @@ loki-data/
 *.db
 .env
 pg-server/
+*.zip
